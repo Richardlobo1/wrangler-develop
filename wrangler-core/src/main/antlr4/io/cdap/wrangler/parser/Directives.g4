@@ -140,7 +140,7 @@ numberRange
  ;
 
 value
- : String | Number | Column | Bool
+ : String | Number | Column | Bool  | BYTE_SIZE | TIME_DURATION
  ;
 
 ecommand
@@ -294,6 +294,28 @@ UnicodeEscape
 
 fragment
    HexDigit : ('0'..'9'|'a'..'f'|'A'..'F') ;
+BYTE_SIZE
+  : Int BYTE_UNIT
+  ;
+
+TIME_DURATION
+  : Int TIME_UNIT
+  ;
+
+fragment BYTE_UNIT
+  : [kK][bB]?
+  | [mM][bB]?
+  | [gG][bB]?
+  | [tT][bB]?
+  ;
+
+fragment TIME_UNIT
+  : [mM][sS]?
+  | [sS]
+  | [hH]
+  | [dD]
+  ;
+
 
 Comment
  : ('//' ~[\r\n]* | '/*' .*? '*/' | '--' ~[\r\n]* ) -> skip
