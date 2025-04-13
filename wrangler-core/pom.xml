@@ -100,6 +100,12 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+  <groupId>org.antlr</groupId>
+  <artifactId>antlr4-runtime</artifactId>
+  <version>4.13.1</version>
+</dependency>
+
+    <dependency>
       <groupId>org.powermock</groupId>
       <artifactId>powermock-api-mockito2</artifactId>
       <version>2.0.2</version>
@@ -335,6 +341,40 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+  <groupId>org.codehaus.mojo</groupId>
+  <artifactId>build-helper-maven-plugin</artifactId>
+  <version>3.2.0</version>
+  <executions>
+    <execution>
+      <id>add-source</id>
+      <phase>generate-sources</phase>
+      <goals>
+        <goal>add-source</goal>
+      </goals>
+      <configuration>
+        <sources>
+          <source>target/generated-sources/antlr4</source>
+        </sources>
+      </configuration>
+    </execution>
+  </executions>
+</plugin>
+      <plugin>
+  <groupId>org.antlr</groupId>
+  <artifactId>antlr4-maven-plugin</artifactId>
+  <version>4.13.1</version>
+  <configuration>
+    <visitor>true</visitor>
+  </configuration>
+  <executions>
+    <execution>
+      <goals>
+        <goal>antlr4</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>buildnumber-maven-plugin</artifactId>
